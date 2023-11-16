@@ -1,0 +1,140 @@
+.login_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    background-image: radial-gradient(
+        #161c24, #090d15 70%
+    );
+}
+
+.right_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100vh;
+}
+
+.left_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100vh;
+}
+
+.left_container img {
+    height: 90vh;
+    border-radius: 2em;
+}
+
+.login_form_container {
+
+    height: 48vh;
+    width: 40vw;
+
+    border-radius: 2em;
+
+    background: rgba(255,255,255,0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.login_form {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+
+.login_form input {
+    max-width: 24em;
+    max-height: 4em;
+    min-width: 16em;
+    min-height: 2.4em;
+    
+    outline: none;
+    border: 2px solid rgba(200, 200, 200, 0.7);
+    border-radius: 10px;
+    padding: 0px 10px;
+    border-bottom: 4px solid rgba(200, 200, 200, 0.4);
+    transition: all 500ms ease-in-out;
+    font-size: 24px;
+
+    margin: 0 0 31px 0;
+}
+
+.login_form input:focus {
+    outline: none;
+    border-bottom: 4px solid #2c2c2c;
+}
+
+.login_form input::placeholder {
+    color: rgba(200, 200, 225, 1);
+}
+
+.login_form button {
+    height: 3.8em;
+    width: 24em;
+
+    border-radius: 16px;
+    border: none;
+
+    transition: all 0.4s ease-in-out;
+    outline: none;
+
+    background-color: #2c2c2c;
+    color: #efefef;
+}
+
+.login_form button:hover {
+    transform: scale(1.08);
+
+    cursor: pointer;
+}
+
+.login_form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.login_form div span {
+    font-size: 1.32em;
+}
+
+@media screen and (max-width: 768px) {
+    .login_container {
+        flex-direction: column;
+    }
+
+    .right_container {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .left_container {
+       display: none;
+    }
+
+    .login_form_container {
+        width: 80vw;
+        height: 60vh;
+    }
+
+    .login_form input {
+        height: 3em;
+        max-width: 2em;
+    }
+
+    .login_form button {
+        height: 4.8em;
+        width: 18em;
+    }
+}
