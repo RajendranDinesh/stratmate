@@ -38,7 +38,7 @@ async def write_rating_history(classical_points, player_id, db):
 @rating_history_router.get("/player/{username}/rating-history")
 async def get_rating_history(username: str, db: Session = Depends(get_db)):
     # Check if the player exists in the 'player' table
-    player = db.query(Player).filter(Player.username == username).first()
+    player = db.query(Player).filter(Player.id == username.lower()).first()
 
     if player:
         # Check if the player has a rating history in the 'rating_history' table
@@ -49,8 +49,11 @@ async def get_rating_history(username: str, db: Session = Depends(get_db)):
         
     else:
         async with httpx.AsyncClient() as client:
-            api_url = f"https://lichess.org/api/user/{username}"
-            response = await client.get(api_url, timeout=5)
+            try:
+                api_url = f"https://lichess.org/api/user/{username}"
+                response = await client.get(api_url, timeout=6)
+            except httpx.ConnectTimeout:
+                raise HTTPException(status_code=404, detail="No User Found")
 
             if response.status_code == 200:
                 lichess_data = response.json()
@@ -65,8 +68,11 @@ async def get_rating_history(username: str, db: Session = Depends(get_db)):
                 raise HTTPException(status_code=response.status_code, detail=response.text)
 
     async with httpx.AsyncClient() as client:
-        api_url = f"https://lichess.org/api/user/{username}/rating-history"
-        response = await client.get(api_url)
+        try:
+            api_url = f"https://lichess.org/api/user/{username}/rating-history"
+            response = await client.get(api_url, timeout=6)
+        except httpx.ConnectTimeout:
+            raise HTTPException(status_code=404, detail="No User Found")
         
         if response.status_code != 200:
             raise HTTPException(status_code=response.status_code, detail=response.text)

@@ -39,6 +39,7 @@ async def get_rating_history_csv(db: Session = Depends(get_db)):
     elif rating_history:
         #get the rating history for each player
         for player in db.query(Player).all():
+            print("Getting rating history for", player.username)
             await get_rating_history(player.username, db)
 
     #get the rating history for the top 50 players

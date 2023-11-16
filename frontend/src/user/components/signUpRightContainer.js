@@ -33,7 +33,7 @@ function SignUpRightContainer() {
 
           if (response.status === 200) {
             window.location = '/';
-            Cookies.set('authToken', response.data.token);
+            Cookies.set('authToken', response.data.token, { expires: 1 });
           }
         } catch (error) {
           if (error.response && error.response.status >= 400 && error.response.status < 500) {
@@ -68,6 +68,10 @@ function SignUpRightContainer() {
                         <button onClick={handleLoginSubmit}>
                            <span>Register</span>
                         </button>
+                    </div>
+
+                    <div>
+                      <a href="/login">Already have an account?</a>
                     </div>
                 </form>
             </div>

@@ -33,7 +33,7 @@ function RightContainer() {
 
           if (response.status === 200) {
             window.location = '/';
-            Cookies.set('authToken', response.data.token);
+            Cookies.set('authToken', response.data.token, { expires: 1 });
           }
         } catch (error) {
             
@@ -72,6 +72,11 @@ function RightContainer() {
                         <button onClick={handleLoginSubmit}>
                            <span>Login</span>
                         </button>
+                    </div>
+
+                    <div>
+                        <span>Don't have an account?</span>
+                        <a href='/register'>Register</a>
                     </div>
                 </form>
             </div>

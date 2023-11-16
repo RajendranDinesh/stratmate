@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 import Login from './user/login';
 import SignUp from './user/signup';
+import UserDashboard from './user/user';
 import Dashboard from './dashboard/dashboard';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
+        <Route path="/user/:username" element={<UserDashboard />} />
       </Routes>
     </Router>
   );

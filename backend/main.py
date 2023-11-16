@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 import uvicorn
@@ -7,6 +7,7 @@ from top_players import top_player_router
 from rating_history import rating_history_router
 from rating_history_csv import rating_csv_router
 from user import user_router
+from utils import JWTBearer
 
 app = FastAPI()
 
@@ -14,9 +15,9 @@ app = FastAPI()
 async def health_check():
     return {'message': 'OK'}
 
-app.include_router(router=top_player_router, prefix='/api')
-app.include_router(router=rating_history_router, prefix='/api')
-app.include_router(router=rating_csv_router, prefix='/api')
+app.include_router(router=top_player_router, prefix='/api', dependencies=[Depends(JWTBearer())])
+app.include_router(router=rating_history_router, prefix='/api', dependencies=[Depends(JWTBearer())])
+app.include_router(router=rating_csv_router, prefix='/api', dependencies=[Depends(JWTBearer())])
 app.include_router(router=user_router, prefix='/api')
 
 origins = [

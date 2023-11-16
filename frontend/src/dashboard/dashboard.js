@@ -1,7 +1,12 @@
+import Top50 from "./components/top50";
+import User from "./components/user";
+import styles from './components/styles/dashboard.module.css';
+
 function Dashboard() {
     return(
-        <div>
-            <h1>Dashboard</h1>
+        <div className={styles.dashboard} >
+            <Top50 />
+            <User />
         </div>
     );
 }

@@ -28,7 +28,7 @@ def register_user(user:User , db: Session = Depends(get_db)):
     except:
         raise HTTPException(status_code=400, detail="Email already exists")
 
-    access_token = create_access_token(subject={"sub": user.email})
+    access_token = create_access_token(subject={"sub": user.email}, expires_delta=7)
 
     return {"token": access_token, "token_type": "bearer"}
 
@@ -41,9 +41,9 @@ def login_user(_user:User , db: Session = Depends(get_db)):
     
     hashed_pasword = user.password
 
-    if verify_password(user.password, hashed_pasword):
+    if not verify_password(_user.password, hashed_pasword):
         raise HTTPException(status_code=401, detail="Incorrect password")
     
-    access_token = create_access_token(subject={"sub": user.email})
+    access_token = create_access_token(subject={"sub": user.email}, expires_delta=7)
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"token": access_token, "token_type": "bearer"}

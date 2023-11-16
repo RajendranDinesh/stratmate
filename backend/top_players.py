@@ -44,7 +44,7 @@ def fetch_top_players(db: Session):
     else:
         raise HTTPException(status_code=response.status_code, detail=response.text)
 
-@top_player_router.get("/top-players", response_model=list)
+@top_player_router.get("/top-players")
 def get_top_players(db: Session = Depends(get_db)):
     players = db.execute(text("""
         SELECT p.username, r.rating, r.progress
@@ -59,4 +59,5 @@ def get_top_players(db: Session = Depends(get_db)):
     if players:
         return players
     else:
-        fetch_top_players(db)
+        players = fetch_top_players(db)
+        return players
