@@ -13,7 +13,7 @@ const debounce = (func, delay) => {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => func.apply(this, args), delay);
     };
-;}
+};
 
 function User(){
     const API_URL = process.env.REACT_APP_API_URL;

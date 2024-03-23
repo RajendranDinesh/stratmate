@@ -1,7 +1,7 @@
 # StratMate
 
 ## Description
-A Full Stack Application utilizing FastAPI, PostgreSQL, and ReactJS to showcase chess player data from the lichess API.
+A Full Stack Application utilizing FastAPI, PostgreSQL, and ReactJS to showcase chess player data from the lichess API. (was my testing project to get into an internship)
 
 ## Setup Instructions
 
